@@ -174,3 +174,20 @@ firstGameContainer.appendChild(topFundedGame);
 let runnerUpGame = document.createElement('p');
 runnerUpGame.innerHTML = secondGame.name;
 secondGameContainer.appendChild(runnerUpGame);
+
+/************************************************************************************
+ * Bonus Features
+*/
+
+// search functionality
+const searchInput = document.getElementById('search-input');
+const searchBtn = document.getElementById('search-btn');
+
+function searchGames() {
+    const query = searchInput.value.toLowerCase();
+    const filteredGames = GAMES_JSON.filter( (game) => { return game.name.toLowerCase().includes(query) });
+    deleteChildElements(gamesContainer);
+    addGamesToPage(filteredGames);
+}
+
+searchBtn.addEventListener('click', searchGames);
