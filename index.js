@@ -21,6 +21,7 @@ function deleteChildElements(parent) {
  * Challenge 3: Add data about each game as a card to the games-container
  * Skills used: DOM manipulation, for loops, template literals, functions
 */
+let fundedGames;
 
 // grab the element with the id games-container
 const gamesContainer = document.getElementById("games-container");
@@ -54,7 +55,7 @@ function addGamesToPage(games) {
 
 // call the function we just defined using the correct variable
 // later, we'll call this function using a different list of games
-addGamesToPage(GAMES_JSON);
+filterFundedOnly();
 
 /*************************************************************************************
  * Challenge 4: Create the summary statistics at the top of the page displaying the
@@ -140,7 +141,7 @@ allBtn.addEventListener('click', showAllGames);
 const descriptionContainer = document.getElementById("description-container");
 
 // use filter or reduce to count the number of unfunded games
-const unfundedGamesCount = GAMES_JSON.reduce( (acc, song) => { return song.pledged < song.goal ? acc+1 : acc }, 0);
+const unfundedGamesCount = GAMES_JSON.reduce( (acc, game) => { return game.pledged < game.goal ? acc+1 : acc }, 0);
 
 // create a string that explains the number of unfunded games using the ternary operator
 const displayText = `A total of $${totalRaised.toLocaleString()} has been raised for ${totalGames.toLocaleString()} games. Currently, ${unfundedGamesCount.toLocaleString()} ${unfundedGamesCount > 1 ? "games remain" : "game remains"} unfunded. We need your help to fund these amazing games!`;
